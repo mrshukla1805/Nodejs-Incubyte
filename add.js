@@ -1,4 +1,15 @@
 
+
+function processArray(strArray) {
+  return strArray.map(str => {
+    let processedStr = str.replace(/\n/g, ',');
+    if (processedStr.endsWith(',')) {
+      processedStr = processedStr.slice(0, -1);
+    }
+    return processedStr;
+  });
+}
+
 function addHelper(str) {
   if (str === "") {
     return 0;
@@ -9,7 +20,8 @@ function addHelper(str) {
 }
 
 function add(strArray){
-  return strArray.map(addHelper);
+  let arrayProccessed = processArray(strArray)
+  return arrayProccessed.map(addHelper);
 }
 
 
