@@ -23,4 +23,8 @@ describe('calculor function', function() {
     expect(add(["1\n2,3"])).to.deep.equal([6]);
   });
 
+  it('should handle new delimeters and give the sum', function() {
+    expect(add(["//;\n1;2"])).to.deep.equal([3]);
+  });
+
 });
