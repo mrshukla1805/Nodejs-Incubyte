@@ -11,4 +11,8 @@ describe('calculor function', function() {
     expect(add("")).to.equal(0);
   });
 
+  it('should return sum for an comma seperated string', function() {
+    expect(add("4,5,5")).to.equal(14);
+  });
+
 });
