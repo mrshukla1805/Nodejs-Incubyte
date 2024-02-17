@@ -27,4 +27,9 @@ describe('calculor function', function() {
     expect(add(["//;\n1;2"])).to.deep.equal([3]);
   });
 
+  it('should throw an exception for negative numbers', function() {
+    const callWithNegative = () => add(["-1,2,-3"]);
+    expect(callWithNegative).to.throw(Error, "negative numbers not allowed: -1, -3");
+  });
+
 });
