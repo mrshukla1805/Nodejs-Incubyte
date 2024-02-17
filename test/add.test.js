@@ -19,4 +19,8 @@ describe('calculor function', function() {
     expect(add(["", "1", "1,5"])).to.deep.equal([0,1,6]);
   });
 
+  it('should handle new lines instead of commas', function() {
+    expect(add(["1\n2,3"])).to.deep.equal([6]);
+  });
+
 });
