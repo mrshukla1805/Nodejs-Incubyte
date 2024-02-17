@@ -1,27 +1,33 @@
 
 
-function processArray(strArray) {
-  return strArray.map(str => {
-    let processedStr = str.replace(/\n/g, ',');
-    if (processedStr.endsWith(',')) {
-      processedStr = processedStr.slice(0, -1);
+function processDelimiter(str) {
+  let delimiter = ',';
+  let numbersPart = str;
+  if (str.startsWith("//")) {
+    let newlineIndex = str.indexOf('\n');
+    if (newlineIndex !== -1) {
+      delimiter = str.substring(2, newlineIndex);
+      numbersPart = str.substring(newlineIndex + 1);
     }
-    return processedStr;
-  });
+  }
+  numbersPart = numbersPart.replace(/\n/g, delimiter);
+
+  return { numbersPart, delimiter };
 }
 
 function addHelper(str) {
   if (str === "") {
     return 0;
   }
-  return str.split(',')
+  let { numbersPart, delimiter } = processDelimiter(str);
+  
+  return numbersPart.split(delimiter)
             .map(Number)
             .reduce((sum, curr) => sum + curr, 0);
 }
 
 function add(strArray){
-  let arrayProccessed = processArray(strArray)
-  return arrayProccessed.map(addHelper);
+  return strArray.map(addHelper);
 }
 
 
